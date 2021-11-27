@@ -1,32 +1,36 @@
 const express = require('express');
+
 const axios = require('axios');
-const url = 'https://swapi.dev/api/people'
+
+const url = 'https://swapi.dev/api/people';
 
 const router = express.Router();
 
 /* GET home page. */
-router.get('/:num', (req, res, next) => {
-  let personNames = []
-  let filmLinks = []
+router.get('/:num', (req, res) => {
+  const personNames = [];
+  const filmLinks = [];
+  const getNameFromLink = [];
+  
   const getname = async () => {
-    let link = await axios.get(url)
-    let pep = await (link.data.results)
+    const link = await axios.get(url);
+    const pep = await (link.data.results);
     // console.log(pep)
-    let getfilms = async (pep) => {
-      pep.forEach(element => {
+    const getfilms = async (peps) => {
+      peps.forEach((element) => {
         personNames.push(element.name);
         filmLinks.push(element.films);
         // console.log (element.name, element.films)
       });
       // console.log(req.params)
-      res.send(`index <div>${personNames[parseInt(req.params.num)-1]}</div> <div>${filmLinks[parseInt(req.params.num)-1]}</div>`);
-    }
-    getfilms(pep);
-    
-  }
-  getname()
+      const texPerson = personNames[parseInt(req.params.num)-1];
+      const textFilms = filmLinks[parseInt(req.params.num)-1];
 
-  
+      res.render('person', { name: `${texPerson}`, links: `${textFilms}`, films: `${getNameFromLink}` });
+    };
+    getfilms(pep);
+  };
+  getname();
 });
 
 module.exports = router;
