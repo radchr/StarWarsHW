@@ -11,7 +11,6 @@ router.get('/:num', (req, res) => {
   const personNames = [];
   const filmLinks = [];
   const getNameFromLink = [];
-  
   const getname = async () => {
     const link = await axios.get(url);
     const pep = await (link.data.results);
