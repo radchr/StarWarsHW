@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Cabinet</title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+  </head>
+  <body>
+    
+    <select id='mail-select'>
+      <option value="english bulldog"><a href="/cabinet/?q=abys">LINK1</a></option>
+      <option value="haski"><a href="/cabinet/?q=haski">LINK2</a></option>
+      <option value="korgi"><a href="/cabinet/?q=korgi">LINK3</a></option>
+      <option value="jek"><a href="/cabinet/?q=jek">LINK4</a></option>
+    </select>
+    
+    <% if (locals.name) { %>
+
+      <div><%= name %></div>
+     
+     <% } %>
+
+     <% if (locals.img) { %>
+
+      <div><%- img %></div>
+     
+     <% } %>
+
+
+     <% if (locals.div1) { %>
+
+      <div><%- div1 %></div>
+     
+     <% } %>
+     
+     <script src="/js/main.js"></script>
+  </body>
+</html>
